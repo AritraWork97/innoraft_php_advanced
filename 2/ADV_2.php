@@ -6,6 +6,23 @@ use PHPMailer\PHPMailer\Exception;
 require './vendor/autoload.php';
 require '../../.cred/auth.php';
 
+$email_addr = $emailErr="";
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+ }
+
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["email"])) {
+       $emailErr = "First Name is required";
+    }else {
+       $email_addr = test_input($_POST["email"]);
+    }
+}
+
 $mail = new PHPMailer(true); 
 $mail->IsSMTP();
 $mail->Mailer = "smtp";
@@ -20,8 +37,8 @@ try {
     $mail->Password   = $password;
 
     $mail->setFrom('aritraWorkBanerjee@gmail.com', 'Aritra Banerjee',0);            
-    $mail->addAddress('aritrabanerjee97@gmail.com'); 
-    $mail->addAddress('aritrabanerjee97@gmail.com', 'Aritra banerjee'); 
+    $mail->addAddress($email_addr); 
+    $mail->addAddress($email_addr, 'Aritra banerjee'); 
        
     $mail->isHTML(true);                                   
     $mail->Subject = 'Subject'; 
