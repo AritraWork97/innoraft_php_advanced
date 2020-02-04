@@ -22,17 +22,14 @@ $res = $client->request('GET', 'https://ir-revamp-dev.innoraft-sites.com/jsonapi
 $res_body = $res->getBody();
 $json = json_decode($res_body);
 
-$total = count($json->data);
-
-for($i = 0; $i <= $total; $i++)
-{
-    $j = $i + 1;
-    $title = $json->data[$i]->attributes->title; 
-    $value = $json->data[$i]->attributes->body->value;
-
-    $points = $json->data[$i]->attributes->field_services->value;
+foreach($json->data as $key => $val){
     
-    $image_location = $json->data[$i]->relationships->field_image->links->related->href;
+    $title = $val->attributes->title; 
+    $value = $val->attributes->body->value;
+
+    $points = $val->attributes->field_services->value;
+    
+    $image_location = $val->relationships->field_image->links->related->href;
 
     $image_req = $client->request('GET',$image_location);
 
@@ -57,12 +54,18 @@ for($i = 0; $i <= $total; $i++)
         echo "</div>";
         echo "<div class='$text_class'>";
             echo "<div class = 'title-div'>";
-            echo "<h1> $j </h1>";
+            echo "<h1> $i </h1>";
                 echo "<h2>$title</h2>";
             echo "</div>";
             echo "<p>$value</p>";
             echo "<p>$points</p>";
         echo "</div>";
     echo "</div>";
+    $i++;
 }
+
+/*for($i = 0; $i <= $total; $i++)
+{
+    
+}*/
 ?>
