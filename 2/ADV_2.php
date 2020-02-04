@@ -3,8 +3,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require './vendor/autoload.php';
-require '../../.cred/auth.php';
+require '../vendor/autoload.php';
+require '../../../.cred/auth.php';
 
 $email_addr = $emailErr="";
 
