@@ -1,13 +1,48 @@
-.main-div{
-    display: flex;
+.main-div-even{
+    display: inline-block;
+    margin-bottom: 70px;
+}
+.image-div-even{
+    float: right;
+    width: 50%;
 }
 
-.image-div{
+.image-div-even img {
+    float: right;
+}
+
+.text-div-even{
     float: left;
     width: 50%;
 }
 
-.text-div{
-    float: right;
+.main-div-odd{
+    display: flex;
+    margin-bottom: 70px;
+}
+
+.text-div-odd{
     width: 50%;
 }
+
+.image-div-odd{
+    width: 50%;
+}
+
+.title-div {
+    display: flex;
+}
+
+.title-div h1 {
+    background-color: #f8ad3c;
+    border-radius: 50%;
+    height: auto;
+    padding: 5px 16px;
+    color: white;
+}
+.title-div  h2 { 
+    color: #f8ad3c;
+     margin-top: 24px;
+     margin-left: 24px; 
+}
+

@@ -13,7 +13,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 
-$i = 0;
+$i = 1;
 
 $client = new Client();
 
@@ -22,10 +22,11 @@ $res = $client->request('GET', 'https://ir-revamp-dev.innoraft-sites.com/jsonapi
 $res_body = $res->getBody();
 $json = json_decode($res_body);
 
-$total = 7;
+$total = count($json->data);
 
-for($i = 0; $i < $total; $i++)
+for($i = 0; $i <= $total; $i++)
 {
+    $j = $i + 1;
     $title = $json->data[$i]->attributes->title; 
     $value = $json->data[$i]->attributes->body->value;
 
@@ -39,12 +40,26 @@ for($i = 0; $i < $total; $i++)
     $image_json = json_decode($image_req_body);
     $image_path = 'https://ir-revamp-dev.innoraft-sites.com/'.$image_json->data->attributes->uri->url;
 
-    echo "<div class='main-div'>";
-        echo "<div class='image-div'>";
+    if($i % 2 == 0)
+    {
+        $main_class = 'main-div-even';
+        $img_class = 'image-div-even';
+        $text_class = 'text-div-even';
+    } else {
+        $main_class = 'main-div-odd';
+        $img_class = 'image-div-odd';
+        $text_class = 'text-div-odd';
+    }
+
+    echo "<div class='$main_class'>";
+        echo "<div class='$img_class'>";
             echo "<img src = '$image_path'width='300px' height='300px'>";
         echo "</div>";
-        echo "<div class='text-div'>";
-            echo "<h1>$title</h1>";
+        echo "<div class='$text_class'>";
+            echo "<div class = 'title-div'>";
+            echo "<h1> $j </h1>";
+                echo "<h2>$title</h2>";
+            echo "</div>";
             echo "<p>$value</p>";
             echo "<p>$points</p>";
         echo "</div>";
