@@ -1,3 +1,10 @@
+<html>
+    <head>
+    </head>
+    <body>
+    </body>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</html>
 <?php
 
 require '../vendor/autoload.php';
@@ -32,11 +39,15 @@ for($i = 0; $i < $total; $i++)
     $image_json = json_decode($image_req_body);
     $image_path = 'https://ir-revamp-dev.innoraft-sites.com/'.$image_json->data->attributes->uri->url;
 
-
-    echo "<h1>$title</h1>";
-    echo "<p>$value</p>";
-    echo "<p>$points</p>";
-    echo "<img src = '$image_path' width='100px' height='100px'>";
-
+    echo "<div class='main-div'>";
+        echo "<div class='image-div'>";
+            echo "<img src = '$image_path'width='300px' height='300px'>";
+        echo "</div>";
+        echo "<div class='text-div'>";
+            echo "<h1>$title</h1>";
+            echo "<p>$value</p>";
+            echo "<p>$points</p>";
+        echo "</div>";
+    echo "</div>";
 }
 ?>

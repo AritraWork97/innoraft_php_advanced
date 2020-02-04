@@ -1,0 +1,13 @@
+.main-div{
+    display: flex;
+}
+
+.image-div{
+    float: left;
+    width: 50%;
+}
+
+.text-div{
+    float: right;
+    width: 50%;
+}
